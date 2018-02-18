@@ -1,0 +1,33 @@
+---
+title: "Classification Tree Analysis of Pima data"
+author: "Ruoyuan Li (001223313)"
+liboutput: pdf_document
+fontsize: 11pt
+geometry: margin=1in
+header-includes:
+   - \linespread{1.5}
+   - \usepackage{amsmath}
+   
+---
+
+
+
+
+
+
+
+: boosting result table .
+
++-------------+-------------------+------------------+-----------------+
+|             | bossting          |bossting          |boosting         | 
++==============+==================+==================+=================+
+| parameters   | - ntree=3000     | - ntree=230      | - ntree=400      | 
+|              | - d=4            | - d=4            | - d=1            |
+|              | - $\lambda=0.001$| - $\lambda=0.01$ | - $\lambda=0.001$| 
++--------------+------------------+------------------+------------------+
+| rand.index   |   0.637          |   0.628          |  0.610           |           
+| corrected    |                  |                  |                  |           
++--------------+------------------+------------------+------------------+
+|misclassified |   15.5%          |   16.3%          |  17.0%           |           
+| rate         |                  |                  |                  |           
++--------------+------------------+------------------+------------------+
