@@ -1,0 +1,14 @@
+---
+title: "How to install archive package from ULR"
+author: "Ruoyuan Li"
+date: "March 1, 2018"
+output: pdf_document
+---
+
+* install Rtools from [Rtools](https://cran.r-project.org/bin/windows/Rtools/)
+
+* install devtools from cran for using install_ulr function
+
+* find the ulr for the archive package, for mine, pgmm's link is [pgmm_1.2.tar.gz](https://cran.r-project.org/bin/windows/Rtools/).
+
+* using command: install_ulr("https://cran.r-project.org/src/contrib/Archive/pgmm/pgmm_1.2.tar.gz"), and done.
