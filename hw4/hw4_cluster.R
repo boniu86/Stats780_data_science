@@ -1,7 +1,5 @@
 library(cluster)
 
-
-
 user<-biopsy[,-1]
 user[,-10]<-lapply(user[,-10], as.numeric)
 user<-na.omit(user)
@@ -11,25 +9,28 @@ x<-user[,-10]
 hc <- hclust(dist(x), "single")
 plot(hc)
 l1<-cutree(hc,2)
-table(unlist(user[,10]),l1)
+tab<-table(unlist(user[,10]),l1)
+classAgreement(tab)
 
 hc2 <- hclust(dist(x), "complete")
 plot(hc2)
 l2<-cutree(hc2,2)
-table(unlist(user[,10]),l2)
+tab<-table(unlist(user[,10]),l2)
+classAgreement(tab)
+
 
 hc3 <- hclust(dist(x), "average")
 plot(hc3)
 l3<-cutree(hc3,2)
-table(unlist(user[,10]),l3)
-
+tab<-table(unlist(user[,10]),l3)
+classAgreement(tab)
 
 
 hc4 <- hclust(dist(x), "ward.D")
 plot(hc4)
 l4<-cutree(hc4,2)
-table(unlist(user[,10]),l4)
-
+tab<-table(unlist(user[,10]),l4)
+classAgreement(tab)
 
 
 
@@ -52,15 +53,17 @@ table(dv2) # 8 and 42 group members
 ## k-means and k-medoids clustering
 
 
-user_kmeans<-kmeans(scale(user[,-10]),2)
+user_kmeans<-kmeans(scale(user[,-10]),7)
 user_kmeans
 user_kmeans$cluster
 
-table(unlist(user[,10]),user_kmeans$cluster)
+tab<-table(unlist(user[,10]),user_kmeans$cluster)
+classAgreement(tab)
+
 
 
 si2 <- silhouette(user_kmeans$cluster, dist(scale(user[,-10])))
-plot(si2, nmax= 80, cex.names=0.6)
+plot(si2, nmax= 80, cex.names=0.6, col=1:2,border = NA)
 
 
 
@@ -69,7 +72,9 @@ user_kmedoids<-pam(scale(user[,-10]),2)
 user_kmedoids
 user_kmedoids$clustering
 
-table(unlist(user[,10]),user_kmedoids$clustering)
+tab<-table(unlist(user[,10]),user_kmedoids$clustering)
+classAgreement(tab)
+
 
 si3 <- silhouette(user_kmedoids$clustering, dist(scale(user[,-10])))
 plot(si3, nmax= 80, cex.names=0.6)
@@ -102,6 +107,7 @@ summary(mod2)
 plot(mod2,  what = c("classification"))
 
 tab<-table(unlist(user[,10]),map(mod2$z))
+classAgreement(tab)
 
 mod2a = Mclust(user[,-10],2:2)
 summary(mod2a)
